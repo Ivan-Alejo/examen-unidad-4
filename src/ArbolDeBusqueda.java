@@ -19,7 +19,8 @@ public static void main(String[] args) {
 
 System.out.println(arbol.calcularAltura());
 System.out.println(arbol.contar());
-arbol.inOrden(arbol.obtenerRaiz());
+arbol.inordenSinRecursividad(arbol.obtenerRaiz());
+
 
 
 

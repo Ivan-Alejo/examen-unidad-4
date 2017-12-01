@@ -1,3 +1,4 @@
+import java.util.Stack;
 public class ArbolBinario {
 
     private NodoArbol raiz;
@@ -119,7 +120,7 @@ public class ArbolBinario {
             raiz=insertarAVL(nuevo,raiz);
         }
     }
-//contar lo numeros de nodos de un arbol con recursividad
+//contar los numeros de nodos de un arbol con recursividad
     public String contar(){
 int cant =contar(this.raiz);
 return "el arbol tiene "+ cant+" nodos ";
@@ -134,6 +135,31 @@ return "el arbol tiene "+ cant+" nodos ";
         return c3;
     }
 
+    // funcion no recursiva para recorrer inorden
+    public void inordenSinRecursividad(NodoArbol i) {
+        Stack<NodoArbol> pila = new Stack<NodoArbol>();
+        NodoArbol aux = i;
+
+        do {
+            if (!pila.empty() && aux == null) {
+                System.out.print(pila.peek().dato + ", ");
+            }
+
+            if (aux != null) {
+                pila.push(aux);
+                aux = aux.hijoIzquierdo;
+            } else if (!pila.empty()) {
+                aux = pila.peek();
+                pila.pop();
+                aux = aux.hijoDerecho;
+            }
+
+        }while(!pila.empty() || aux != null);
+    }
+
+
+
+
     //calcular la altura de un arbol con recursividad
 
     public String calcularAltura(){
@@ -147,18 +173,5 @@ return "el arbol tiene "+ cant+" nodos ";
         if(h1>h2)return h1+1;
         return h2 +1;
     }
-
-   public void inOrden(NodoArbol r) {
-       if (r != null) {
-
-           inOrden(r.hijoIzquierdo);
-           System.out.print(r.dato + ", ");
-           inOrden(r.hijoDerecho);
-
-       }
-
-
-   }
-
 
 }
